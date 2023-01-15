@@ -1,0 +1,21 @@
+table:
+  name: QuotationSections
+  schema: public
+object_relationships:
+  - name: Category
+    using:
+      foreign_key_constraint_on: category
+  - name: Quotation
+    using:
+      foreign_key_constraint_on: quotationId
+  - name: Unit
+    using:
+      foreign_key_constraint_on: unit
+array_relationships:
+  - name: QuotationSectionItems
+    using:
+      foreign_key_constraint_on:
+        column: sectionId
+        table:
+          name: QuotationSectionItems
+          schema: public

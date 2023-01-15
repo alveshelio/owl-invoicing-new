@@ -1,0 +1,21 @@
+table:
+  name: Invoices
+  schema: public
+object_relationships:
+  - name: InvoiceStatus
+    using:
+      foreign_key_constraint_on: status
+  - name: Organization
+    using:
+      foreign_key_constraint_on: organizationId
+  - name: Quotation
+    using:
+      foreign_key_constraint_on: quotationId
+array_relationships:
+  - name: InvoiceSections
+    using:
+      foreign_key_constraint_on:
+        column: invoiceId
+        table:
+          name: InvoiceSections
+          schema: public

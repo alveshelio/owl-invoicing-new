@@ -1,0 +1,10 @@
+table:
+  name: Stocks
+  schema: public
+object_relationships:
+  - name: Category
+    using:
+      foreign_key_constraint_on: category
+  - name: Organization
+    using:
+      foreign_key_constraint_on: organizationId

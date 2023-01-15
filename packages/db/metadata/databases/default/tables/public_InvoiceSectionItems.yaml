@@ -1,0 +1,7 @@
+table:
+  name: InvoiceSectionItems
+  schema: public
+object_relationships:
+  - name: InvoiceSection
+    using:
+      foreign_key_constraint_on: sectionId

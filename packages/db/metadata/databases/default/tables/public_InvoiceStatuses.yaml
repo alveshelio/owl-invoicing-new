@@ -1,0 +1,11 @@
+table:
+  name: InvoiceStatuses
+  schema: public
+array_relationships:
+  - name: Invoices
+    using:
+      foreign_key_constraint_on:
+        column: status
+        table:
+          name: Invoices
+          schema: public

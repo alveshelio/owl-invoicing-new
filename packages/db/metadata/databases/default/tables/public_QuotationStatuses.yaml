@@ -1,0 +1,11 @@
+table:
+  name: QuotationStatuses
+  schema: public
+array_relationships:
+  - name: Quotations
+    using:
+      foreign_key_constraint_on:
+        column: status
+        table:
+          name: Quotations
+          schema: public

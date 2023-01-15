@@ -1,0 +1,29 @@
+table:
+  name: Organizations
+  schema: public
+object_relationships:
+  - name: authorizer_user
+    using:
+      foreign_key_constraint_on: userId
+array_relationships:
+  - name: Invoices
+    using:
+      foreign_key_constraint_on:
+        column: organizationId
+        table:
+          name: Invoices
+          schema: public
+  - name: Quotations
+    using:
+      foreign_key_constraint_on:
+        column: organizationId
+        table:
+          name: Quotations
+          schema: public
+  - name: Stocks
+    using:
+      foreign_key_constraint_on:
+        column: organizationId
+        table:
+          name: Stocks
+          schema: public

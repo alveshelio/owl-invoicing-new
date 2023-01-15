@@ -1,0 +1,18 @@
+table:
+  name: Units
+  schema: public
+array_relationships:
+  - name: InvoiceSections
+    using:
+      foreign_key_constraint_on:
+        column: unit
+        table:
+          name: InvoiceSections
+          schema: public
+  - name: QuotationSections
+    using:
+      foreign_key_constraint_on:
+        column: unit
+        table:
+          name: QuotationSections
+          schema: public

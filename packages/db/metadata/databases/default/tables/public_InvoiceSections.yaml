@@ -1,0 +1,21 @@
+table:
+  name: InvoiceSections
+  schema: public
+object_relationships:
+  - name: Category
+    using:
+      foreign_key_constraint_on: category
+  - name: Invoice
+    using:
+      foreign_key_constraint_on: invoiceId
+  - name: Unit
+    using:
+      foreign_key_constraint_on: unit
+array_relationships:
+  - name: InvoiceSectionItems
+    using:
+      foreign_key_constraint_on:
+        column: sectionId
+        table:
+          name: InvoiceSectionItems
+          schema: public
