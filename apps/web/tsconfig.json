@@ -1,4 +1,16 @@
 {
   "extends": "../../packages/tsconfig/solidjs.json",
-  "include": ["**/*.ts", "**/*.tsx"]
+  "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "@/*": [
+        "src/*"
+      ]
+    }
+  },
+  "include": [
+    ".eslintrc.js",
+    "**/*.ts",
+    "**/*.tsx"
+  ]
 }

@@ -1,6 +1,6 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
-  "display": "SolidJs",
+  "display": "solid",
   "extends": "./base.json",
   "compilerOptions": {
     "strict": true,
@@ -15,6 +15,5 @@
     "noEmit": true,
     "isolatedModules": true
   },
-  "include": ["src"],
   "exclude": ["node_modules"]
 }
