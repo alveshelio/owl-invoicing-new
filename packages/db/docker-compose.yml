@@ -5,10 +5,29 @@ services:
     ports:
       - "5432:5432"
     restart: always
+    container_name: db
     volumes:
     - db_data:/var/lib/postgresql/data
     environment:
       POSTGRES_PASSWORD: postgres
+
+  authorizer:
+    image: lakhansamani/authorizer:1.1.33
+    ports:
+    - "3080:3080"
+    depends_on:
+    - "postgres"
+    container_name: authorizer
+    environment:
+      ENV: development
+      DATABASE_TYPE: postgres
+      ADMIN_SECRET: secret
+      DATABASE_NAME: postgres
+      DATABASE_USERNAME: postgres
+      DATABASE_PASSWORD: postgres
+      PORT: 3080
+      DATABASE_URL: postgres://postgres:postgres@postgres:5432/postgres
+      AUTHORIZER_URL: "http://localhost:3080"
   graphql-engine:
     image: hasura/graphql-engine:v2.16.1
     ports:
@@ -16,11 +35,13 @@ services:
     depends_on:
     - "postgres"
     restart: always
+    container_name: hasura
     environment:
       ## postgres database to store Hasura metadata
       HASURA_GRAPHQL_METADATA_DATABASE_URL: postgres://postgres:postgres@postgres:5432/postgres
       ## this env var can be used to add the above postgres database to Hasura as a data source. this can be removed/updated based on your needs
       PG_DATABASE_URL: postgres://postgres:postgres@postgres:5432/postgres
+      HASURA_GRAPHQL_JWT_SECRET:  '{"type": "RS512","key": "-----BEGIN RSA PUBLIC KEY-----\nMIIBCgKCAQEAxpFgAV2Q+zjiukf0gAFHsNb1Nsm/L+HoDWFLwTT5tDZr73ip1OFE\n2rPE48jrU4q/SqD6kWc0+1/FczlZlwjt+AcYmw3fYDGIf8X1+PROI4+5wH7YLfwQ\nkf/J7LDcTG8tPy5TIv+bHncdjvw+NS5pQUGLz2AP6A8Qge6N2olPrhTWq0k2qLbP\nXfFOGCP3gua9/Qm0hARXFAXMHbAk0I+vqB+7I6z9Qbj4IgORIE/gwr9s5QOL/mrM\nVjQ193GXY6w1pVgJj0iLIkZ1fvAxLEMu5k0FND726MvSuBUeGKW4hAOgHgCoZ+yp\ni/K091lXOb/L7kyuo0SO66RFkDfv2fUr4QIDAQAB\n-----END RSA PUBLIC KEY-----","claims_namespace": "hasura","claims_format": "json"}'
       ## enable the console served by server
       HASURA_GRAPHQL_ENABLE_CONSOLE: "true" # set to "false" to disable console
       ## enable debugging mode. It is recommended to disable this in production
@@ -30,4 +51,3 @@ services:
       HASURA_GRAPHQL_ADMIN_SECRET: "myadminsecretkey"
 volumes:
   db_data:
-
