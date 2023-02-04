@@ -1,7 +1,7 @@
 {
   "extends": "../../packages/tsconfig/solidjs.json",
   "compilerOptions": {
-    "baseUrl": "./",
+    "baseUrl": ".",
     "paths": {
       "@/*": [
         "src/*"
