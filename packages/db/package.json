@@ -10,6 +10,6 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "hasura-cli": "^2.16.1"
+    "hasura-cli": "^2.17.0"
   }
 }

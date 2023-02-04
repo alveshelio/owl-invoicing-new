@@ -1,10 +1,10 @@
-import { MainNavigation } from '@/components';
+import { AppNavigation } from '@/components';
 import { ParentComponent } from 'solid-js';
 
-export const MainLayout: ParentComponent = (props) => (
+export const AppLayout: ParentComponent = (props) => (
   <div class="grid grid-cols-mainLayout">
     <aside class="text-cyan-50">
-      <MainNavigation />
+      <AppNavigation />
     </aside>
     <main>{props.children}</main>
   </div>

@@ -1,2 +1,2 @@
-export { MainLayout } from './layout/MainLayout';
-export { MainNavigation } from './navigation/MainNavigation';
+export { AppLayout } from 'src/components/layout/AppLayout';
+export { AppNavigation } from 'src/components/navigation/AppNavigation';

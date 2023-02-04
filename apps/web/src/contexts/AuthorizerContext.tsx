@@ -193,4 +193,4 @@ export const AuthorizerProvider: ParentComponent<AuthorizerProviderProps> = (pro
   );
 };
 
-export const useAuthorizer = () => useContext(AuthorizerContext);
+export const getAuthorizer = () => useContext(AuthorizerContext);
