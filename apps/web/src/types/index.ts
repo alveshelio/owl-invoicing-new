@@ -26,8 +26,8 @@ export type AuthorizerActions = {
   logout: () => Promise<void>;
   setLoading: (data: boolean) => void;
   setUser: (data: null | User) => void;
-  setToken: (data: null | AuthToken) => void;
-  setAuthData: (data: AuthorizerState) => void;
+  setToken: (data: AuthToken) => void;
+  setAuthData: (data: AuthToken) => void;
   authorizer: Authorizer;
 };
 

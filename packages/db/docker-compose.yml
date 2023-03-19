@@ -12,7 +12,7 @@ services:
       POSTGRES_PASSWORD: postgres
 
   authorizer:
-    image: lakhansamani/authorizer:1.1.33
+    image: lakhansamani/authorizer:1.1.41
     ports:
     - "3080:3080"
     depends_on:
@@ -29,7 +29,7 @@ services:
       DATABASE_URL: postgres://postgres:postgres@postgres:5432/postgres
       AUTHORIZER_URL: "http://localhost:3080"
   graphql-engine:
-    image: hasura/graphql-engine:v2.16.1
+    image: hasura/graphql-engine:v2.20.0
     ports:
     - "8080:8080"
     depends_on:
@@ -41,7 +41,7 @@ services:
       HASURA_GRAPHQL_METADATA_DATABASE_URL: postgres://postgres:postgres@postgres:5432/postgres
       ## this env var can be used to add the above postgres database to Hasura as a data source. this can be removed/updated based on your needs
       PG_DATABASE_URL: postgres://postgres:postgres@postgres:5432/postgres
-      HASURA_GRAPHQL_JWT_SECRET:  '{"type": "RS512","key": "-----BEGIN RSA PUBLIC KEY-----\nMIIBCgKCAQEAxpFgAV2Q+zjiukf0gAFHsNb1Nsm/L+HoDWFLwTT5tDZr73ip1OFE\n2rPE48jrU4q/SqD6kWc0+1/FczlZlwjt+AcYmw3fYDGIf8X1+PROI4+5wH7YLfwQ\nkf/J7LDcTG8tPy5TIv+bHncdjvw+NS5pQUGLz2AP6A8Qge6N2olPrhTWq0k2qLbP\nXfFOGCP3gua9/Qm0hARXFAXMHbAk0I+vqB+7I6z9Qbj4IgORIE/gwr9s5QOL/mrM\nVjQ193GXY6w1pVgJj0iLIkZ1fvAxLEMu5k0FND726MvSuBUeGKW4hAOgHgCoZ+yp\ni/K091lXOb/L7kyuo0SO66RFkDfv2fUr4QIDAQAB\n-----END RSA PUBLIC KEY-----","claims_namespace": "hasura","claims_format": "json"}'
+      HASURA_GRAPHQL_JWT_SECRET:  '{"type":"RS256","key":"-----BEGIN RSA PUBLIC KEY-----\nMIIBCgKCAQEA14VQQvKZ4UjpRAHfpmuZL6fF6r68md2MVe7EuddD6DcFDt1HhBvh\nDrWjEdVUHsRVikByH8jHaHFUyeDqflO+Peory8WJLzNxKzuc9bKhqB6yGCfwlcUb\n27tpOdSc8+3ROlZwcJU/QSG+WoTcAx4iE0YhfE4Ab1AwXRDPM+4rMYGHTnXKxcMT\npynKgpouqZoKG5xEnCSHEKdpFAiClF3guuZmOzC2qDUsTCTaJSskpRLMwSfAtfIp\nB/ascXeLfynl2mujzHeLle9CVAmc6h2jL5epUqLHdfJrQSbjWn+C4drYB16uAd5C\nr0msE30ib67sF1qrd1PTQ6GrpWsxEVfE3QIDAQAB\n-----END RSA PUBLIC KEY-----\n"}'
       ## enable the console served by server
       HASURA_GRAPHQL_ENABLE_CONSOLE: "true" # set to "false" to disable console
       ## enable debugging mode. It is recommended to disable this in production

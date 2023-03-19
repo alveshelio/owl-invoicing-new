@@ -1,10 +1,84 @@
 table:
   name: Stocks
   schema: public
+configuration:
+  column_config: {}
+  custom_column_names: {}
+  custom_root_fields:
+    delete: deleteStocks
+    delete_by_pk: deleteStock
+    insert: insertStocks
+    insert_one: insertStock
+    select: stocks
+    select_aggregate: stocksAggregate
+    select_by_pk: stock
+    select_stream: stocksStream
+    update: updateStocks
+    update_by_pk: updateStock
+    update_many: updateManyStocks
 object_relationships:
   - name: Category
     using:
-      foreign_key_constraint_on: category
+      manual_configuration:
+        column_mapping:
+          categoryId: id
+        insertion_order: null
+        remote_table:
+          name: StockCategories
+          schema: public
   - name: Organization
     using:
       foreign_key_constraint_on: organizationId
+insert_permissions:
+  - role: organizationAdmin
+    permission:
+      check:
+        Organization:
+          userId:
+            _eq: X-Hasura-User-Id
+      columns:
+        - name
+        - unit
+        - pricePerUnit
+        - createdAt
+        - updatedAt
+        - categoryId
+        - id
+        - organizationId
+select_permissions:
+  - role: organizationAdmin
+    permission:
+      columns:
+        - name
+        - unit
+        - pricePerUnit
+        - createdAt
+        - updatedAt
+        - categoryId
+        - id
+        - organizationId
+      filter:
+        Organization:
+          userId:
+            _eq: X-Hasura-User-Id
+update_permissions:
+  - role: organizationAdmin
+    permission:
+      columns:
+        - categoryId
+        - name
+        - pricePerUnit
+        - unit
+        - updatedAt
+      filter:
+        Organization:
+          userId:
+            _eq: X-Hasura-User-Id
+      check: null
+delete_permissions:
+  - role: organizationAdmin
+    permission:
+      filter:
+        Organization:
+          userId:
+            _eq: X-Hasura-User-Id

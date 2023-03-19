@@ -1,25 +1,3 @@
 table:
   name: Categories
   schema: public
-array_relationships:
-  - name: InvoiceSections
-    using:
-      foreign_key_constraint_on:
-        column: category
-        table:
-          name: InvoiceSections
-          schema: public
-  - name: QuotationSections
-    using:
-      foreign_key_constraint_on:
-        column: category
-        table:
-          name: QuotationSections
-          schema: public
-  - name: Stocks
-    using:
-      foreign_key_constraint_on:
-        column: category
-        table:
-          name: Stocks
-          schema: public

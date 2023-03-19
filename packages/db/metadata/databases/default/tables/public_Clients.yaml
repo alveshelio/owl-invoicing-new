@@ -1,0 +1,41 @@
+table:
+  name: Clients
+  schema: public
+configuration:
+  column_config: {}
+  custom_column_names: {}
+  custom_root_fields:
+    delete: deleteClients
+    delete_by_pk: deleteClient
+    insert: insertClients
+    insert_one: insertClient
+    select: clients
+    select_aggregate: clientsAggregate
+    select_by_pk: client
+    select_stream: clientsStream
+    update: updateClients
+    update_by_pk: updateClient
+    update_many: updateManyClients
+object_relationships:
+  - name: Organization
+    using:
+      foreign_key_constraint_on: organizationId
+array_relationships:
+  - name: Invoices
+    using:
+      manual_configuration:
+        column_mapping:
+          id: clientId
+        insertion_order: null
+        remote_table:
+          name: Invoices
+          schema: public
+  - name: Quotations
+    using:
+      manual_configuration:
+        column_mapping:
+          id: clientId
+        insertion_order: null
+        remote_table:
+          name: Quotations
+          schema: public

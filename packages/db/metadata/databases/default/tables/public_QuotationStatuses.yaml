@@ -1,6 +1,21 @@
 table:
   name: QuotationStatuses
   schema: public
+configuration:
+  column_config: {}
+  custom_column_names: {}
+  custom_root_fields:
+    delete: deleteQuotationStatuses
+    delete_by_pk: deleteQuotationStatus
+    insert: insertQuotationStatuses
+    insert_one: insertQuotationStatus
+    select: quotationStatuses
+    select_aggregate: quotationStatusesAggregate
+    select_by_pk: quotationStatus
+    select_stream: quotationStatusesStream
+    update: updateQuotationStatuses
+    update_by_pk: updateQuotationStatus
+    update_many: updateManyQuotationStatuses
 array_relationships:
   - name: Quotations
     using:
@@ -9,3 +24,16 @@ array_relationships:
         table:
           name: Quotations
           schema: public
+select_permissions:
+  - role: organizationAdmin
+    permission:
+      columns:
+        - value
+      filter:
+        _exists:
+          _table:
+            name: authorizer_users
+            schema: public
+          _where:
+            id:
+              _eq: X-Hasura-User-Id

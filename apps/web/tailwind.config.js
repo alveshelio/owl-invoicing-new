@@ -6,9 +6,9 @@ module.exports = {
   theme: {
     extend: {
       gridTemplateColumns: {
-        mainLayout: '100px minmax(900px, 1fr)',
+        mainLayout: '100px minmax(360px, 1fr)',
       },
     },
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/forms')],
 }

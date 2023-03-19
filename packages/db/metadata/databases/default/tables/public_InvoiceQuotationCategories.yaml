@@ -1,0 +1,72 @@
+table:
+  name: InvoiceQuotationCategories
+  schema: public
+object_relationships:
+  - name: Organization
+    using:
+      manual_configuration:
+        column_mapping:
+          organizationId: id
+        insertion_order: null
+        remote_table:
+          name: Organizations
+          schema: public
+array_relationships:
+  - name: InvoiceSections
+    using:
+      foreign_key_constraint_on:
+        column: categoryId
+        table:
+          name: InvoiceSections
+          schema: public
+  - name: QuotationSections
+    using:
+      foreign_key_constraint_on:
+        column: categoryId
+        table:
+          name: QuotationSections
+          schema: public
+insert_permissions:
+  - role: organizationAdmin
+    permission:
+      check:
+        Organization:
+          userId:
+            _eq: X-Hasura-User-Id
+      columns:
+        - created_at
+        - id
+        - organizationId
+        - updated_at
+        - value
+select_permissions:
+  - role: organizationAdmin
+    permission:
+      columns:
+        - value
+        - created_at
+        - updated_at
+        - id
+        - organizationId
+      filter:
+        Organization:
+          userId:
+            _eq: X-Hasura-User-Id
+update_permissions:
+  - role: organizationAdmin
+    permission:
+      columns:
+        - updated_at
+        - value
+      filter:
+        Organization:
+          userId:
+            _eq: X-Hasura-User-Id
+      check: null
+delete_permissions:
+  - role: organizationAdmin
+    permission:
+      filter:
+        Organization:
+          userId:
+            _eq: X-Hasura-User-Id

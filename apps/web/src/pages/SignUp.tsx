@@ -1,5 +1,5 @@
 import { MainLayout } from '@/components/layout/MainLayout';
-import { Button } from '@/ui';
+import { Button } from '@/components/ui';
 import { getAuthorizer } from '@/contexts/AuthorizerContext';
 import { useNavigate } from '@solidjs/router';
 import { createEffect } from 'solid-js';
@@ -16,9 +16,15 @@ export default function SignUpPage() {
     password: z.string(),
   });
   const [state, { authorizer }] = getAuthorizer();
-  createForm<z.infer<typeof schema>>({
+  const { form } = createForm<z.infer<typeof schema>>({
     onSubmit: async ({ email, password }) => {
-      await authorizer.signup({ email, password, confirm_password: password });
+      await authorizer.signup({
+        email,
+        password,
+        confirm_password: password,
+        roles: [import.meta.env.VITE_ADMIN_ROLE, import.meta.env.VITE_USER_ROLE],
+        redirect_uri: import.meta.env.VITE_HOST,
+      });
     },
     onSuccess: () => {
       navigate('/');
@@ -39,7 +45,7 @@ export default function SignUpPage() {
   return (
     <MainLayout>
       <form use:form class="">
-        <h1>Login</h1>
+        <h1>Register</h1>
         <div class="">
           <input
             aria-label="email"
@@ -57,14 +63,9 @@ export default function SignUpPage() {
             name="password"
             id="password"
           />
-          <button class="">Send Link</button>
+          <Button>Register</Button>
         </div>
       </form>
-      <div class="flex justify-center">
-        <Button type="submit" color="primary">
-          Login
-        </Button>
-      </div>
     </MainLayout>
   );
 }

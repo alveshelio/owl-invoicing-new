@@ -1,5 +1,5 @@
 import { MainLayout } from '@/components/layout/MainLayout';
-import { Button } from '@/ui';
+import { Button } from '@/components/ui';
 import { Link, useNavigate } from '@solidjs/router';
 import { getAuthorizer } from '@/contexts/AuthorizerContext';
 import { createEffect } from 'solid-js';

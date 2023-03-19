@@ -9,3 +9,48 @@ array_relationships:
         table:
           name: Organizations
           schema: public
+select_permissions:
+  - role: organizationAdmin
+    permission:
+      columns:
+        - created_at
+        - email_verified_at
+        - phone_number_verified_at
+        - revoked_timestamp
+        - updated_at
+        - is_multi_factor_auth_enabled
+        - id
+        - birthdate
+        - email
+        - family_name
+        - gender
+        - given_name
+        - key
+        - middle_name
+        - nickname
+        - password
+        - phone_number
+        - picture
+        - roles
+        - signup_methods
+      filter:
+        id:
+          _eq: X-Hasura-User-Id
+update_permissions:
+  - role: organizationAdmin
+    permission:
+      columns:
+        - birthdate
+        - email
+        - family_name
+        - gender
+        - given_name
+        - middle_name
+        - nickname
+        - phone_number
+        - picture
+        - updated_at
+      filter:
+        id:
+          _eq: X-Hasura-User-Id
+      check: null

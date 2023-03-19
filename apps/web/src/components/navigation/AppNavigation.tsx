@@ -3,7 +3,7 @@ import { getAuthorizer } from '@/contexts/AuthorizerContext';
 import { Show } from 'solid-js';
 import { FaSolidFileInvoiceDollar, FaSolidFileInvoice } from 'solid-icons/fa';
 import { BiSolidDashboard } from 'solid-icons/bi';
-import { Button } from '@/ui';
+import { Button } from '@/components/ui';
 
 export const AppNavigation = () => {
   const navigate = useNavigate();

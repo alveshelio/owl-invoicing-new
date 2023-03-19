@@ -1,3 +1,18 @@
 table:
   name: Roles
   schema: public
+configuration:
+  column_config: {}
+  custom_column_names: {}
+  custom_root_fields:
+    delete: deleteRoles
+    delete_by_pk: deleteRole
+    insert: insertRoles
+    insert_one: insertRole
+    select: roles
+    select_aggregate: rolesAggregate
+    select_by_pk: role
+    select_stream: rolesStream
+    update: updateRoles
+    update_by_pk: updateRole
+    update_many: updateManyRoles

@@ -32,11 +32,11 @@ const AuthorizerContext = createContext<Context>([
     // eslint-disable-next-line @typescript-eslint/no-empty-function
     setLoading: () => {},
     // eslint-disable-next-line @typescript-eslint/no-empty-function
-    setToken: () => {},
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
     setUser: () => {},
     // eslint-disable-next-line @typescript-eslint/no-empty-function
     setAuthData: () => {},
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
+    setToken: () => {},
     authorizer: new Authorizer({
       authorizerURL: 'http://localhost:8080',
       redirectURL: 'http://localhost:8080',
@@ -137,6 +137,7 @@ export const AuthorizerProvider: ParentComponent<AuthorizerProviderProps> = (pro
 
   const handleTokenChange = (token: AuthToken | null) => {
     setState('token', token);
+    setState('user', token?.user ? token.user : null);
 
     // If we have an access_token, then we clear the interval and create a new interval
     // to the token expires_in, so we can retrieve the token again before it expires
@@ -147,7 +148,7 @@ export const AuthorizerProvider: ParentComponent<AuthorizerProviderProps> = (pro
 
       interval = setInterval(() => {
         getToken();
-      }, token.expires_in * 1000);
+      }, token?.expires_in * 1000);
     }
   };
 
@@ -155,13 +156,15 @@ export const AuthorizerProvider: ParentComponent<AuthorizerProviderProps> = (pro
     setState('user', user);
   };
 
-  const setAuthData = (data: AuthorizerState) => {
-    setState(data);
+  const setToken = (token: AuthToken) => {
+    setState('token', token);
   };
 
   const logout = async () => {
+    await authorizer().logout();
     setState('loading', false);
     setState('user', null);
+    setState('token', null);
   };
 
   createEffect(() => {
@@ -181,8 +184,8 @@ export const AuthorizerProvider: ParentComponent<AuthorizerProviderProps> = (pro
         {
           setUser,
           setLoading,
-          setToken: handleTokenChange,
-          setAuthData,
+          setAuthData: handleTokenChange,
+          setToken,
           authorizer: authorizer(),
           logout,
         },
