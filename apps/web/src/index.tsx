@@ -2,7 +2,8 @@
 import { AuthorizerProvider } from '@/contexts/AuthorizerContext';
 import { render } from 'solid-js/web';
 import { Router } from '@solidjs/router';
-import { QueryClient, QueryClientProvider } from '@tanstack/solid-query';
+import { QueryClientProvider } from '@tanstack/solid-query';
+import { QueryClient } from '@tanstack/query-core';
 
 import '@/index.css';
 import { App } from '@/App';

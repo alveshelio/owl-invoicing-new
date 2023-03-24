@@ -1,8 +1,8 @@
-import { Organization } from '@/models/organizationModels';
+import { OrganizationEntity } from '@/models/organizationModels';
 import { Link } from '@solidjs/router';
 
 type OrganizationDisplayProps = {
-  organization?: Organization;
+  organization?: OrganizationEntity;
 };
 export const OrganizationDisplay = (props: OrganizationDisplayProps) => {
   return (

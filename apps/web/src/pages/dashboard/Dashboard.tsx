@@ -1,6 +1,5 @@
 import { AppLayout } from '@/components';
 import { QueryDisplay } from '@/components/queryDisplay/QueryDisplay';
-import { Input } from '@/components/ui';
 import { organizationQuery } from '@/gql/queries';
 import { OrganizationDisplay } from '@/modules/organization/OrganizationDisplay';
 import { useNavigate } from '@solidjs/router';

@@ -4,7 +4,8 @@ import { getAuthorizer } from '@/contexts/AuthorizerContext';
 
 const Home = lazy(() => import('@/pages/Home'));
 const Dashboard = lazy(() => import('@/pages/dashboard/Dashboard'));
-const Invoices = lazy(() => import('@/pages/Invoices'));
+const Invoices = lazy(() => import('@/pages/invoices/Invoices'));
+const NewInvoice = lazy(() => import('@/pages/invoices/NewInvoice'));
 const Quotations = lazy(() => import('@/pages/Quotations'));
 const Login = lazy(() => import('@/pages/Login'));
 const Signup = lazy(() => import('@/pages/SignUp'));
@@ -28,7 +29,11 @@ export const RoutesConfig = () => {
       <Route path="/login" component={Login} />
       <Route path="/signup" component={Signup} />
       <Route path="/dashboard" component={Dashboard} />
-      <Route path="/invoices" component={Invoices} />
+      <Route path="/invoices">
+        <Route path="/" component={Invoices} />
+        <Route path="/new" component={NewInvoice} />
+      </Route>
+
       <Route path="/quotations" component={Quotations} />
       <Route path="/organization">
         <Route path="/:id" component={Organization} />

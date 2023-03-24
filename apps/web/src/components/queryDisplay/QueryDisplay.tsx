@@ -12,7 +12,6 @@ export const QueryDisplay = <Query extends CreateQueryResult>(props: QueryDispla
     <Switch>
       <Match when={props.query.isLoading} keyed={false}>
         <p>Loading</p>
-        <pre>{JSON.stringify(props.query, null, 2)}</pre>
       </Match>
       <Match when={props.query.isError} keyed={false}>
         <p>There was an error</p>

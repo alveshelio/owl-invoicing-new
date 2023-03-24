@@ -1,16 +1,17 @@
 import { createOrganizationMutation } from '@/gql/mutations';
 import { getUser } from '@/helpers/auth';
-import { OrganizationEntity } from '@/models/organizationModels';
+import { OrganizationInput } from '@/models/organizationModels';
 import { useNavigate } from '@solidjs/router';
 import { Input } from '@ui';
 import { z } from 'zod';
 import { createForm } from '@felte/solid';
 
-type CreateUpdateOrganizationFormProps = {
-  initialValues?: OrganizationEntity;
+type CreateUpdateInvoiceFormProps = {
+  initialValues?: OrganizationInput;
   actionButtonLabel: string;
 };
-export const CreateUpdateOrganizationForm = (props: CreateUpdateOrganizationFormProps) => {
+
+export const CreateUpdateInvoiceForm = (props: CreateUpdateInvoiceFormProps) => {
   const user = getUser();
   const schema = z.object({
     name: z.string().min(3, { message: 'Please provide a valid organization name' }),
@@ -33,7 +34,7 @@ export const CreateUpdateOrganizationForm = (props: CreateUpdateOrganizationForm
         { organization: { ...organization, userId: user?.id as string } },
         {
           onSuccess: ({ id }) => {
-            navigate(`/organization/${id}`);
+            navigate(`/invoices/${id}`);
           },
         }
       );

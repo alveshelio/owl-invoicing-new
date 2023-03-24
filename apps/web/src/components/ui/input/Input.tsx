@@ -1,6 +1,6 @@
 import { JSX, mergeProps, splitProps } from 'solid-js';
 import { VariantProps } from 'class-variance-authority';
-import { inputStyles } from './inputStyles';
+import { inputStyles } from 'src/components/ui/input/input.styles';
 
 export type InputProps = Omit<JSX.InputHTMLAttributes<HTMLInputElement>, 'size'> & VariantProps<typeof inputStyles>;
 
