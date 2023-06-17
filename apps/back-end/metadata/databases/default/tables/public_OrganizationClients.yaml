@@ -1,0 +1,31 @@
+table:
+  name: OrganizationClients
+  schema: public
+configuration:
+  column_config: {}
+  custom_column_names: {}
+  custom_name: OrganizationClients
+  custom_root_fields:
+    delete: deleteOrganizationClients
+    delete_by_pk: deleteOrganizationClient
+    insert: insertOrganizationClients
+    insert_one: insertOrganizationClient
+    select: organizationClients
+    select_aggregate: organizationClientsAggregate
+    select_by_pk: organizationClient
+    select_stream: organizationClientsStream
+    update: updateOrganizationClients
+    update_by_pk: updateOrganizationClient
+    update_many: updateManyOrganizationClients
+object_relationships:
+  - name: Organization
+    using:
+      foreign_key_constraint_on: organizationId
+array_relationships:
+  - name: Invoices
+    using:
+      foreign_key_constraint_on:
+        column: clientId
+        table:
+          name: Invoices
+          schema: public

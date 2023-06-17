@@ -1,0 +1,23 @@
+table:
+  name: QuotationSectionItems
+  schema: public
+configuration:
+  column_config: {}
+  custom_column_names: {}
+  custom_name: QuotationSectionItems
+  custom_root_fields:
+    delete: deleteQuotationSectionItems
+    delete_by_pk: deleteQuotationSectionItem
+    insert: insertQuotationSectionItems
+    insert_one: insertQuotationSectionItem
+    select: quotationSectionItems
+    select_aggregate: quotationSectionItemsAggregate
+    select_by_pk: quotationSectionItem
+    select_stream: quotationSectionItemsStream
+    update: updateQuotationSectionItems
+    update_by_pk: updateQuotationSectionItem
+    update_many: updateManyQuotationSectionItems
+object_relationships:
+  - name: QuotationSection
+    using:
+      foreign_key_constraint_on: sectionId

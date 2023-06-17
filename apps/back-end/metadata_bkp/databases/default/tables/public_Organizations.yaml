@@ -1,0 +1,108 @@
+table:
+  name: Organizations
+  schema: public
+configuration:
+  column_config: {}
+  custom_column_names: {}
+  custom_root_fields:
+    delete: deleteOrganizations
+    delete_by_pk: deleteOrganization
+    insert: insertOrganizations
+    insert_one: insertOrganization
+    select: organizations
+    select_aggregate: organizationsAggreate
+    select_by_pk: organization
+    select_stream: organizationsStream
+    update: updateOrganizations
+    update_by_pk: updateOrganization
+    update_many: updateManyOrganizations
+object_relationships:
+  - name: authorizer_user
+    using:
+      foreign_key_constraint_on: userId
+array_relationships:
+  - name: Clients
+    using:
+      foreign_key_constraint_on:
+        column: organizationId
+        table:
+          name: OrganizationClients
+          schema: public
+  - name: Invoices
+    using:
+      foreign_key_constraint_on:
+        column: organizationId
+        table:
+          name: Invoices
+          schema: public
+  - name: Quotations
+    using:
+      foreign_key_constraint_on:
+        column: organizationId
+        table:
+          name: Quotations
+          schema: public
+  - name: Stocks
+    using:
+      foreign_key_constraint_on:
+        column: organizationId
+        table:
+          name: Stocks
+          schema: public
+insert_permissions:
+  - role: organizationAdmin
+    permission:
+      check:
+        userId:
+          _eq: X-Hasura-User-Id
+      columns:
+        - city
+        - createdAt
+        - email
+        - id
+        - name
+        - phoneNumberLandLine
+        - phoneNumberMobile
+        - postalCode
+        - state
+        - street
+        - updatedAt
+        - userId
+select_permissions:
+  - role: organizationAdmin
+    permission:
+      columns:
+        - city
+        - createdAt
+        - email
+        - id
+        - name
+        - phoneNumberLandLine
+        - phoneNumberMobile
+        - postalCode
+        - state
+        - street
+        - updatedAt
+        - userId
+      filter:
+        userId:
+          _eq: X-Hasura-User-Id
+update_permissions:
+  - role: organizationAdmin
+    permission:
+      columns:
+        - city
+        - email
+        - name
+        - phoneNumberLandLine
+        - phoneNumberMobile
+        - postalCode
+        - state
+        - street
+        - updatedAt
+      filter:
+        userId:
+          _eq: X-Hasura-User-Id
+      check:
+        userId:
+          _eq: X-Hasura-User-Id

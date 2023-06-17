@@ -1,0 +1,27 @@
+table:
+  name: InvoiceStatuses
+  schema: public
+configuration:
+  column_config: {}
+  custom_column_names: {}
+  custom_name: InvoiceStatuses
+  custom_root_fields:
+    delete: deleteInvoiceStatuses
+    delete_by_pk: deleteInvoiceStatus
+    insert: insertInvoiceStatuses
+    insert_one: insertInvoiceStatus
+    select: invoiceStatuses
+    select_aggregate: invoiceStatusesAggregate
+    select_by_pk: invoiceStatus
+    select_stream: invoiceStatusesStream
+    update: updateInvoiceStatuses
+    update_by_pk: updateInvoiceStatus
+    update_many: updateManyInvoiceStatuses
+array_relationships:
+  - name: Invoices
+    using:
+      foreign_key_constraint_on:
+        column: status
+        table:
+          name: Invoices
+          schema: public

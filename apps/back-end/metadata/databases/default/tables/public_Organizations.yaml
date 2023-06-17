@@ -1,0 +1,52 @@
+table:
+  name: Organizations
+  schema: public
+configuration:
+  column_config: {}
+  custom_column_names: {}
+  custom_name: Organizations
+  custom_root_fields:
+    delete: deleteOrganizations
+    delete_by_pk: deleteOrganization
+    insert: insertOrganizations
+    insert_one: insertOrganization
+    select: organizations
+    select_aggregate: organizationsAggregate
+    select_by_pk: organization
+    select_stream: organizationsStream
+    update: updateOrganizations
+    update_by_pk: updateOrganization
+    update_many: updateManyOrganizations
+object_relationships:
+  - name: authorizer_user
+    using:
+      foreign_key_constraint_on: userId
+array_relationships:
+  - name: Invoices
+    using:
+      foreign_key_constraint_on:
+        column: organizationId
+        table:
+          name: Invoices
+          schema: public
+  - name: OrganizationClients
+    using:
+      foreign_key_constraint_on:
+        column: organizationId
+        table:
+          name: OrganizationClients
+          schema: public
+  - name: Quotations
+    using:
+      foreign_key_constraint_on:
+        column: organizationId
+        table:
+          name: Quotations
+          schema: public
+  - name: Stocks
+    using:
+      foreign_key_constraint_on:
+        column: organizationId
+        table:
+          name: Stocks
+          schema: public

@@ -1,0 +1,37 @@
+table:
+  name: QuotationSections
+  schema: public
+configuration:
+  column_config: {}
+  custom_column_names: {}
+  custom_name: QuotationSections
+  custom_root_fields:
+    delete: deleteQuotationSections
+    delete_by_pk: deleteQuotationSection
+    insert: insertQuotationSections
+    insert_one: insertQuotationSection
+    select: quotationSections
+    select_aggregate: quotationSectionsAggregate
+    select_by_pk: quotationSection
+    select_stream: quotationSectionsStream
+    update: updateQuotationSections
+    update_by_pk: updateQuotationSection
+    update_many: updateManyQuotationSections
+object_relationships:
+  - name: InvoiceQuotationCategory
+    using:
+      foreign_key_constraint_on: categoryId
+  - name: Quotation
+    using:
+      foreign_key_constraint_on: quotationId
+  - name: Unit
+    using:
+      foreign_key_constraint_on: unit
+array_relationships:
+  - name: QuotationSectionItems
+    using:
+      foreign_key_constraint_on:
+        column: sectionId
+        table:
+          name: QuotationSectionItems
+          schema: public

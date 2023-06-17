@@ -1,0 +1,53 @@
+version: '3.6'
+services:
+  postgres:
+    image: postgres:14.8
+    ports:
+      - "5432:5432"
+    restart: always
+    container_name: db
+    volumes:
+    - db_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: postgres
+
+  authorizer:
+    image: lakhansamani/authorizer:1.1.51
+    ports:
+    - "3080:3080"
+    depends_on:
+    - "postgres"
+    container_name: authorizer
+    environment:
+      ENV: development
+      DATABASE_TYPE: postgres
+      ADMIN_SECRET: secret
+      DATABASE_NAME: postgres
+      DATABASE_USERNAME: postgres
+      DATABASE_PASSWORD: postgres
+      PORT: 3080
+      DATABASE_URL: postgres://postgres:postgres@postgres:5432/postgres
+      AUTHORIZER_URL: "http://localhost:3080"
+  graphql-engine:
+    image: hasura/graphql-engine:v2.27.0
+    ports:
+    - "8080:8080"
+    depends_on:
+    - "postgres"
+    restart: always
+    container_name: hasura
+    environment:
+      ## postgres database to store Hasura metadata
+      HASURA_GRAPHQL_METADATA_DATABASE_URL: postgres://postgres:postgres@postgres:5432/postgres
+      ## this env var can be used to add the above postgres database to Hasura as a data source. this can be removed/updated based on your needs
+      PG_DATABASE_URL: postgres://postgres:postgres@postgres:5432/postgres
+      HASURA_GRAPHQL_JWT_SECRET:  '{"type":"RS256","key":"-----BEGIN RSA PUBLIC KEY-----\nMIIBCgKCAQEA14VQQvKZ4UjpRAHfpmuZL6fF6r68md2MVe7EuddD6DcFDt1HhBvh\nDrWjEdVUHsRVikByH8jHaHFUyeDqflO+Peory8WJLzNxKzuc9bKhqB6yGCfwlcUb\n27tpOdSc8+3ROlZwcJU/QSG+WoTcAx4iE0YhfE4Ab1AwXRDPM+4rMYGHTnXKxcMT\npynKgpouqZoKG5xEnCSHEKdpFAiClF3guuZmOzC2qDUsTCTaJSskpRLMwSfAtfIp\nB/ascXeLfynl2mujzHeLle9CVAmc6h2jL5epUqLHdfJrQSbjWn+C4drYB16uAd5C\nr0msE30ib67sF1qrd1PTQ6GrpWsxEVfE3QIDAQAB\n-----END RSA PUBLIC KEY-----\n"}'
+      ## enable the console served by server
+      HASURA_GRAPHQL_ENABLE_CONSOLE: "true" # set to "false" to disable console
+      ## enable debugging mode. It is recommended to disable this in production
+      HASURA_GRAPHQL_DEV_MODE: "true"
+      HASURA_GRAPHQL_ENABLED_LOG_TYPES: startup, http-log, webhook-log, websocket-log, query-log
+      ## uncomment next line to set an admin secret
+      HASURA_GRAPHQL_ADMIN_SECRET: "myadminsecretkey"
+volumes:
+  db_data:

@@ -1,0 +1,40 @@
+table:
+  name: Invoices
+  schema: public
+configuration:
+  column_config: {}
+  custom_column_names: {}
+  custom_name: Invoices
+  custom_root_fields:
+    delete: deleteInvoices
+    delete_by_pk: deleteInvoice
+    insert: insertInvoices
+    insert_one: insertInvoice
+    select: invoices
+    select_aggregate: invoicesAggregate
+    select_by_pk: invoice
+    select_stream: invoicesStream
+    update: updateInvoices
+    update_by_pk: updateInvoice
+    update_many: updateManyInvoices
+object_relationships:
+  - name: InvoiceStatus
+    using:
+      foreign_key_constraint_on: status
+  - name: Organization
+    using:
+      foreign_key_constraint_on: organizationId
+  - name: OrganizationClient
+    using:
+      foreign_key_constraint_on: clientId
+  - name: Quotation
+    using:
+      foreign_key_constraint_on: quotationId
+array_relationships:
+  - name: InvoiceSections
+    using:
+      foreign_key_constraint_on:
+        column: invoiceId
+        table:
+          name: InvoiceSections
+          schema: public

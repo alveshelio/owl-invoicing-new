@@ -1,0 +1,34 @@
+table:
+  name: InvoiceQuotationCategories
+  schema: public
+configuration:
+  column_config: {}
+  custom_column_names: {}
+  custom_name: InvoiceQuotationCategories
+  custom_root_fields:
+    delete: deleteInvoiceQuotationCategories
+    delete_by_pk: deleteInvoiceQuotationCategory
+    insert: insertInvoiceQuotationCategories
+    insert_one: insertInvoiceQuotationCategory
+    select: invoiceQuotationCategories
+    select_aggregate: invoiceQuotationCategoriesAggregate
+    select_by_pk: invoiceQuotationCategory
+    select_stream: InvoiceQuotationCategoriesStream
+    update: updateInvoiceQuotationCategories
+    update_by_pk: updateInvoiceQuotationCategory
+    update_many: updateManyInvoiceQuotationCategories
+array_relationships:
+  - name: InvoiceSections
+    using:
+      foreign_key_constraint_on:
+        column: categoryId
+        table:
+          name: InvoiceSections
+          schema: public
+  - name: QuotationSections
+    using:
+      foreign_key_constraint_on:
+        column: categoryId
+        table:
+          name: QuotationSections
+          schema: public

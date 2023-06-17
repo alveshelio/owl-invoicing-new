@@ -1,0 +1,11 @@
+table:
+  name: authorizer_users
+  schema: public
+object_relationships:
+  - name: Organization
+    using:
+      foreign_key_constraint_on:
+        column: userId
+        table:
+          name: Organizations
+          schema: public

@@ -1,0 +1,41 @@
+table:
+  name: Quotations
+  schema: public
+configuration:
+  column_config: {}
+  custom_column_names: {}
+  custom_name: Quotations
+  custom_root_fields:
+    delete: deleteQuotations
+    delete_by_pk: deleteQuotation
+    insert: insertQuotations
+    insert_one: insertQuotation
+    select: quotations
+    select_aggregate: quotationsAggregate
+    select_by_pk: quotation
+    select_stream: quotationsStream
+    update: updateQuotations
+    update_by_pk: updateQuotation
+    update_many: updateManyQuotations
+object_relationships:
+  - name: Organization
+    using:
+      foreign_key_constraint_on: organizationId
+  - name: QuotationStatus
+    using:
+      foreign_key_constraint_on: status
+array_relationships:
+  - name: Invoices
+    using:
+      foreign_key_constraint_on:
+        column: quotationId
+        table:
+          name: Invoices
+          schema: public
+  - name: QuotationSections
+    using:
+      foreign_key_constraint_on:
+        column: quotationId
+        table:
+          name: QuotationSections
+          schema: public

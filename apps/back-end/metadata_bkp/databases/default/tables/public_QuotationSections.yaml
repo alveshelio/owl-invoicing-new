@@ -1,0 +1,103 @@
+table:
+  name: QuotationSections
+  schema: public
+configuration:
+  column_config: {}
+  custom_column_names: {}
+  custom_root_fields:
+    delete: deleteQuotationSections
+    delete_by_pk: deleteQuotationSection
+    insert: insertQuotationSections
+    insert_one: insertQuotationSection
+    select: quotationSections
+    select_aggregate: quotationSectionsAggregate
+    select_by_pk: quotationSection
+    select_stream: quotationSectionsStream
+    update: updateQuotationSections
+    update_by_pk: updateQuotationSection
+    update_many: updateManyQuotationSections
+object_relationships:
+  - name: Category
+    using:
+      manual_configuration:
+        column_mapping:
+          categoryId: id
+        insertion_order: null
+        remote_table:
+          name: InvoiceQuotationCategories
+          schema: public
+  - name: Organization
+    using:
+      manual_configuration:
+        column_mapping:
+          organizationId: id
+        insertion_order: null
+        remote_table:
+          name: Organizations
+          schema: public
+  - name: Quotation
+    using:
+      foreign_key_constraint_on: quotationId
+  - name: Unit
+    using:
+      foreign_key_constraint_on: unit
+array_relationships:
+  - name: QuotationSectionItems
+    using:
+      foreign_key_constraint_on:
+        column: sectionId
+        table:
+          name: QuotationSectionItems
+          schema: public
+insert_permissions:
+  - role: organizationAdmin
+    permission:
+      check:
+        Organization:
+          userId:
+            _eq: X-Hasura-User-Id
+      columns:
+        - name
+        - unit
+        - createdAt
+        - updatedAt
+        - categoryId
+        - id
+        - organizationId
+        - quotationId
+select_permissions:
+  - role: organizationAdmin
+    permission:
+      columns:
+        - name
+        - unit
+        - createdAt
+        - updatedAt
+        - categoryId
+        - id
+        - organizationId
+        - quotationId
+      filter:
+        Organization:
+          userId:
+            _eq: X-Hasura-User-Id
+update_permissions:
+  - role: organizationAdmin
+    permission:
+      columns:
+        - categoryId
+        - name
+        - unit
+        - updatedAt
+      filter:
+        Organization:
+          userId:
+            _eq: X-Hasura-User-Id
+      check: null
+delete_permissions:
+  - role: organizationAdmin
+    permission:
+      filter:
+        Organization:
+          userId:
+            _eq: X-Hasura-User-Id

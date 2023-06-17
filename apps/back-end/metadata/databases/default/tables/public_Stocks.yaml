@@ -1,0 +1,26 @@
+table:
+  name: Stocks
+  schema: public
+configuration:
+  column_config: {}
+  custom_column_names: {}
+  custom_name: Stocks
+  custom_root_fields:
+    delete: deleteStocks
+    delete_by_pk: deleteStock
+    insert: insertStocks
+    insert_one: insertStock
+    select: stocks
+    select_aggregate: stocksAggregate
+    select_by_pk: stock
+    select_stream: stocksStream
+    update: updateStocks
+    update_by_pk: updateStock
+    update_many: updateManyStocks
+object_relationships:
+  - name: Organization
+    using:
+      foreign_key_constraint_on: organizationId
+  - name: StockCategory
+    using:
+      foreign_key_constraint_on: categoryId

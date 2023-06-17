@@ -1,0 +1,28 @@
+{
+  "extends": "../../packages/tsconfig/solidstart.json",
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "jsxImportSource": "solid-js",
+    "jsx": "preserve",
+    "strict": true,
+    "types": ["solid-start/env"],
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": [
+    "./setupTests.ts",
+    "vite.config.ts",
+    ".eslintrc.cjs",
+    "src",
+    "./codegen.ts",
+    "playwright.config.ts",
+    "playwright-ct.config.ts"
+  ],
+  "references": [{ "path": "./tsconfig.node.json" }]
+}

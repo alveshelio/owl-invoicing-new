@@ -1,0 +1,14 @@
+query AllInvoices($organizationId: uuid!) {
+  invoices(where: { organizationId: { _eq: $organizationId } }) {
+    id
+    amount
+    status
+    Quotation {
+      number
+    }
+    OrganizationClient {
+      name
+    }
+  }
+}
+

@@ -1,0 +1,34 @@
+table:
+  name: Units
+  schema: public
+configuration:
+  column_config: {}
+  custom_column_names: {}
+  custom_name: Units
+  custom_root_fields:
+    delete: deleteUnits
+    delete_by_pk: deleteUnit
+    insert: insertUnits
+    insert_one: insertUnit
+    select: units
+    select_aggregate: unitsAggregate
+    select_by_pk: unit
+    select_stream: unitsStream
+    update: updateUnits
+    update_by_pk: updateUnit
+    update_many: updateManyUnits
+array_relationships:
+  - name: InvoiceSections
+    using:
+      foreign_key_constraint_on:
+        column: unit
+        table:
+          name: InvoiceSections
+          schema: public
+  - name: QuotationSections
+    using:
+      foreign_key_constraint_on:
+        column: unit
+        table:
+          name: QuotationSections
+          schema: public

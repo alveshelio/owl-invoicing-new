@@ -41,7 +41,7 @@ services:
       HASURA_GRAPHQL_METADATA_DATABASE_URL: postgres://postgres:postgres@postgres:5432/postgres
       ## this env var can be used to add the above postgres database to Hasura as a data source. this can be removed/updated based on your needs
       PG_DATABASE_URL: postgres://postgres:postgres@postgres:5432/postgres
-      HASURA_GRAPHQL_JWT_SECRET:  '{"type":"RS256","key":"-----BEGIN RSA PUBLIC KEY-----\nMIIBCgKCAQEA14VQQvKZ4UjpRAHfpmuZL6fF6r68md2MVe7EuddD6DcFDt1HhBvh\nDrWjEdVUHsRVikByH8jHaHFUyeDqflO+Peory8WJLzNxKzuc9bKhqB6yGCfwlcUb\n27tpOdSc8+3ROlZwcJU/QSG+WoTcAx4iE0YhfE4Ab1AwXRDPM+4rMYGHTnXKxcMT\npynKgpouqZoKG5xEnCSHEKdpFAiClF3guuZmOzC2qDUsTCTaJSskpRLMwSfAtfIp\nB/ascXeLfynl2mujzHeLle9CVAmc6h2jL5epUqLHdfJrQSbjWn+C4drYB16uAd5C\nr0msE30ib67sF1qrd1PTQ6GrpWsxEVfE3QIDAQAB\n-----END RSA PUBLIC KEY-----\n"}'
+      HASURA_GRAPHQL_JWT_SECRET:  '{"type":"RS256","key":"-----BEGIN RSA PUBLIC KEY-----\nMIIBCgKCAQEAv3YmlmNqfBDJ+RVJm1mCLuxLs7+G/unIoY86uUrJ5UwVWUg5CQAg\nzN5DdNrFSpA6LnABGyxo4xHpLYsK+U/eVcKvey2Hrx+N9coAYK1czdQnZQT+p+N4\nwfm2LwDXNPdEVbrwlpo5OouwokzRDWpXEwBoKIJDAPTl20NC8XqApITTy4NRZLLJ\n44cW/E8M2MK+6OvofuKSRnA2D5t3uMHr97zomb6fsmQ2tCe/7UESKLvk9R9Q2HHi\nzVSEdTafPliUZln8Cknv1enbVBqfgEkGmItWRZA7Y9/cZFgOvvkd05753BHihbob\nfOPxjzYAEbDDThp5qeSxT+mqSz/TGPUP0wIDAQAB\n-----END RSA PUBLIC KEY-----"}'
       ## enable the console served by server
       HASURA_GRAPHQL_ENABLE_CONSOLE: "true" # set to "false" to disable console
       ## enable debugging mode. It is recommended to disable this in production
